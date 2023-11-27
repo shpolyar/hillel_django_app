@@ -42,8 +42,10 @@ class Tag(models.Model):
 
 
 class Goods(DataTimeStamp):
-    name = models.CharField('Название товара', max_length=25, unique=True)
+    # name = models.CharField('Название товара', max_length=25, unique=True)
+    name = models.CharField('Название товара', max_length=25)
     description = RichTextField('Описание', blank=True)
+    price = models.FloatField('Price', default=0)
     activate = models.BooleanField('Active', default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='goods')
     tags = models.ManyToManyField(Tag, related_name='goods_tag')
