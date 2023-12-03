@@ -1,7 +1,7 @@
 import requests
 
-URL = 'https://rickandmortyapi.com/api/location'
-
+# URL = 'https://rickandmortyapi.com/api/location'
+URL = 'https://api-seller.rozetka.com.ua/sites'
 
 def get_category():
     req = requests.get(URL)
@@ -12,5 +12,7 @@ def get_category():
             print('*'*30)
             print(item['residents'])
 
+req = requests.get(URL)
 
-get_category()
+print(req.status_code)
+print(req.json())

@@ -41,6 +41,18 @@ class Tag(models.Model):
         return self.name
 
 
+class Parametr(models.Model):
+    name = models.CharField('Параметр товару', max_length=25, unique=True)
+
+    class Meta:
+        verbose_name = 'Parametr'
+        verbose_name_plural = 'Parametrs'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class Goods(DataTimeStamp):
     # name = models.CharField('Название товара', max_length=25, unique=True)
     name = models.CharField('Название товара', max_length=25)
@@ -50,6 +62,7 @@ class Goods(DataTimeStamp):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='goods')
     tags = models.ManyToManyField(Tag, related_name='goods_tag')
     image = models.ImageField('Image', upload_to='image', blank=True)
+    parametr = models.ForeignKey(Parametr, on_delete=models.CASCADE, related_name='parametr', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Good'
