@@ -8,11 +8,9 @@ def get_category():
     print(req.status_code)
     if req.status_code == 200:
         for item in req.json()['results']:
-            print(item['id'], item['name'])
-            print('*'*30)
-            print(item['residents'])
+            print(item)
 
-req = requests.get(URL)
-
-print(req.status_code)
-print(req.json())
+get_category()
+# req = requests.get(URL)
+# print(req.status_code)
+# print(req.json())

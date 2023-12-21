@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Goods, Tag, Parametr
+from .models import Category, Goods, Tag, Parametr, ExcelCategory
 import admin_thumbnails
 
 
@@ -22,6 +22,8 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Goods, GoodsAdmin)
 admin.site.register(Tag)
 admin.site.register(Parametr)
+admin.site.register(ExcelCategory)
+
 
 admin.site.site_header = 'Admin Django'
 admin.site.index_title = 'Welcome to Admin Portal'

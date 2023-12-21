@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Category, Goods, Tag
+from .models import Category, Goods, Tag, ExcelCategory
+
+
+class ExcelCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExcelCategory
+        fields = ['id', 'name', 'url', 'width', 'height']
 
 
 class TagSerializer(serializers.ModelSerializer):

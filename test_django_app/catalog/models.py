@@ -10,6 +10,21 @@ class DataTimeStamp(models.Model):
         abstract = True
 
 
+class ExcelCategory(models.Model):
+    name = models.CharField('id', max_length=10, unique=True)
+    url = models.URLField('Url', blank=True)
+    width = models.IntegerField('width', blank=True)
+    height = models.IntegerField('height', blank=True)
+
+    class Meta:
+        verbose_name = 'Excel Category'
+        verbose_name_plural = 'Excel Categories'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
     name = models.CharField('Имя категории', max_length=25, unique=True)
     # url = models.URLField('Url', blank=True)

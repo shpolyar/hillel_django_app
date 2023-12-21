@@ -7,12 +7,16 @@ django-debug-toolbar==4.2.0
 django-filter==23.4
 django-richtextfield==1.6.1
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
+et-xmlfile==1.1.0
 Faker==20.1.0
 idna==3.6
 inflection==0.5.1
+openpyxl==3.1.2
 packaging==23.2
 Pillow==10.1.0
+PyJWT==2.8.0
 python-dateutil==2.8.2
 pytz==2023.3.post1
 PyYAML==6.0.1
