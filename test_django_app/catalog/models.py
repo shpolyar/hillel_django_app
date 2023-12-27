@@ -42,6 +42,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'/category_detail/{self.pk}/'
+
 
 class Tag(models.Model):
     name = models.CharField('Имя тега', max_length=25, unique=True)

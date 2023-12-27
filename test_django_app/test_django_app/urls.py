@@ -26,7 +26,9 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from catalog.views import CategoryViews, TagViews, GoodsViews, ExcelCategoryView
+from catalog.views import (CategoryViews, TagViews, GoodsViews, ExcelCategoryView,
+                           HelloViews, CategoryListViews,  CategoryDetailView,
+                           CategoryCreateView, CategoryUpdateView, CategoryDeleteView)
 
 Router = routers.DefaultRouter()
 Router.register('category', CategoryViews)
@@ -48,9 +50,17 @@ urlpatterns = [
     path('api/', include(Router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/tags', TagViews.as_view({'get':'list'})),
+    path('api/tags', TagViews.as_view({'get': 'list'})),
     path('api-auth/', include('rest_framework.urls')),
     path('djrichtextfield/', include('djrichtextfield.urls')),
+
+    path('', HelloViews.as_view(), name='hello'),
+    path('category-list', CategoryListViews.as_view(), name='category-list'),
+    path('category_detail/<int:pk>/', CategoryDetailView.as_view(), name='category-detail'),
+    path('category-create', CategoryCreateView.as_view(), name='category-create'),
+    path('category-update/<int:pk>/', CategoryUpdateView.as_view(), name='category-update'),
+    path('category-delete/<int:pk>/', CategoryDeleteView.as_view(), name='category-delete'),
+
 
     path('doc', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

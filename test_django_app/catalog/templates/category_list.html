@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Category list {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Category</h1>
+    <a class="btn btn-success"  href="/category-create" role="button">Create new Category</a><br>
+
+    {% for category in object_list %}
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ category.name }}</h5>
+            <p class="card-text">{{ category.description|safe }}</p>
+            <a href="/category_detail/{{category.id}}/" class="card-link">Details</a>
+            <a href="/category-delete/{{category.id}}/" class="card-link btn btn-danger">Delete</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No Category yet</p>
+    {% endfor %}
+
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+    Page {{ page_obj.number }} of {{page_obj.paginator.num_pages }}
+
+</div>
+{% endblock %}
