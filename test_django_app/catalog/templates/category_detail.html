@@ -11,6 +11,7 @@
     <div class="row">
         {% for good in object.goods.all %}
         <div class="card" style="width: 18rem;">
+            <img src="../../media/{{ good.image }}" class="card-img-top" alt="image">
             <div class="card-body">
                 <h5 class="card-title">{{ good.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Price: {{ good.price }}</h6>

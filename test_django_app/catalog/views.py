@@ -17,6 +17,7 @@ class ExcelCategoryView(viewsets.ModelViewSet):
     serializer_class = ExcelCategorySerializer
     queryset = ExcelCategory.objects.order_by('id')
     permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CategoryViews(viewsets.ModelViewSet):
