@@ -7,18 +7,7 @@ from bs4 import BeautifulSoup
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from transliterate import translit
-import time
-
-
-# def time_of_function(function):
-#     def wrapped(*args):
-#         start_time = time.perf_counter_ns()
-#         res = function(*args)
-#         print(time.perf_counter_ns() - start_time)
-#         return res
-#
-#     return wrapped()
-
+import datetime
 
 # URL = 'https://rozetka.com.ua/mobile-phones/c80003/producer=apple/'
 URL = 'https://ukrzoloto.ua'
@@ -39,8 +28,8 @@ class Command(BaseCommand):
             handler.write(img_data)
         return f'image/{image_name}.jpg'
 
-    # @time_of_function
     def handle(self, *args, **options):
+        start_time = datetime.datetime.now()
         print('Start!')
         r = requests.get(URL + '/catalog')
         bs = BeautifulSoup(r.content, 'html5lib')
@@ -72,3 +61,4 @@ class Command(BaseCommand):
                     image=self.download_image(good_img_url, slugify(self.translit_word(good_name))),
                 )
         print('Success!')
+        print('Used time:', datetime.datetime.now() - start_time)
