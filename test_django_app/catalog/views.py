@@ -12,6 +12,9 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+from rest_framework import status
+from rest_framework.response import Response
+
 
 class ExcelCategoryView(viewsets.ModelViewSet):
     serializer_class = ExcelCategorySerializer
@@ -23,7 +26,30 @@ class ExcelCategoryView(viewsets.ModelViewSet):
 class CategoryViews(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.filter(activate=True).order_by('id').prefetch_related('goods', 'goods__tags')
+
     # permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        category_name = request.data.get('name')
+
+        existing_cat = Category.objects.filter(name=category_name).first()
+
+        if existing_cat:
+            category_id = existing_cat.id
+            return Response(
+                data={'id': category_id},
+                status=status.HTTP_200_OK
+            )
+        else:
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    data=serializer.data,
+                    status=status.HTTP_201_CREATED
+                )
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TagViews(viewsets.ModelViewSet):
@@ -37,8 +63,7 @@ class GoodsViews(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['name', 'description']
     filterset_class = GoodsFilter
-    permission_classes = [IsAuthenticatedOrReadOnly]
-
+    # permission_classes = [IsAuthenticatedOrReadOnly]
     # @method_decorator(cache_page(60*2))
     # def dispatch(self, request, *args, **kwargs):
     #     return super().dispatch(request, *args, **kwargs)

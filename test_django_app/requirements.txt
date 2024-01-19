@@ -15,9 +15,11 @@ django-filter==23.4
 django-richtextfield==1.6.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
+drf-extra-fields==3.7.0
 drf-yasg==1.21.7
 et-xmlfile==1.1.0
 Faker==20.1.0
+filetype==1.2.0
 frozenlist==1.4.1
 html5lib==1.1
 idna==3.6

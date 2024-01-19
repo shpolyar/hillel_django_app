@@ -72,8 +72,8 @@ class Parametr(models.Model):
 
 
 class Goods(DataTimeStamp):
-    # name = models.CharField('Название товара', max_length=25, unique=True)
-    name = models.CharField('Название товара', max_length=100)
+    name = models.CharField('Название товара', max_length=100, unique=True)
+    # name = models.CharField('Название товара', max_length=100)
     description = RichTextField('Описание', blank=True)
     price = models.FloatField('Price', default=0)
     activate = models.BooleanField('Active', default=False)
