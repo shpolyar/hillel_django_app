@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'crispy_forms',
     'crispy_bootstrap5',
+    'storages',
+    # 'mptt',
 
     # my app
     'catalog',
@@ -130,6 +132,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = 'media/'
@@ -195,3 +198,24 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+AWS_ACCESS_KEY_ID = 'AKIA5FTZCXAOJWSFZ3FJ'
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'my-test-bucket-django'
+
+# AWS_S3_FILE_OVERWRITE =
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.eu-north-1.amazonaws.com'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        # "OPTIONS": {
+        #     ...
+        # },
+    },
+    'staticfiles': {
+        # "BACKEND": "storages.backends.s3b.S3Boto3Storage",
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}

@@ -13,7 +13,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin_thumbnails.thumbnail('image')
 class GoodsAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'activate', 'category', 'created', 'updated']
+    list_display = ['id', 'name', 'activate', 'category', 'created', 'updated', 'image_thumbnail']
+    list_display_links = ['name']
     list_filter = ['activate', 'category']
     search_fields = ['name', 'description']
 

@@ -25,8 +25,8 @@ class ExcelCategory(models.Model):
         return self.name
 
 
-class Category(models.Model):
-    name = models.CharField('Имя категории', max_length=25, unique=True)
+class Category(DataTimeStamp):
+    name = models.CharField('Имя категории', max_length=50, unique=True)
     # url = models.URLField('Url', blank=True)
     # email = models.EmailField('Email', blank=True)
     description = RichTextField('Описание', blank=True)
