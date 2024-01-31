@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
-
+from KEYS import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -199,8 +199,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
-AWS_ACCESS_KEY_ID = 'AKIA5FTZCXAOJWSFZ3FJ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
 
 AWS_STORAGE_BUCKET_NAME = 'my-test-bucket-django'
 
